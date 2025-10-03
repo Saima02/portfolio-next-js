@@ -9,14 +9,16 @@ import { routes, display, person, about, blog, work, gallery } from "@/resources
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Header.module.scss";
 
+import React, { useEffect, useState } from "react";
+
 type TimeDisplayProps = {
-  timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
+  timeZone?: string;
+  locale?: string;
 };
 
 const TimeDisplay: React.FC<TimeDisplayProps> = ({
-  timeZone = "Asia/Kolkata", // Default Mumbai/India time zone
-  locale = "en-IN",          // Indian English locale
+  timeZone = "Asia/Kolkata", // India time zone
+  locale = "en-IN",
 }) => {
   const [currentTime, setCurrentTime] = useState("");
 
@@ -28,7 +30,7 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
-        hour12: false,
+        hour12: true, // 12-hour format with AM/PM
       };
       const timeString = new Intl.DateTimeFormat(locale, options).format(now);
       setCurrentTime(timeString);
@@ -42,6 +44,8 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
 
   return <>{currentTime}</>;
 };
+
+export default TimeDisplay;
 
 export default TimeDisplay;
 
