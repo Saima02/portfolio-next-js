@@ -14,7 +14,10 @@ type TimeDisplayProps = {
   locale?: string; // Optionally allow locale, defaulting to 'en-GB'
 };
 
-const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-In" }) => {
+const TimeDisplay: React.FC<TimeDisplayProps> = ({
+  timeZone = "Asia/Kolkata", // Default Mumbai/India time zone
+  locale = "en-IN",          // Indian English locale
+}) => {
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
