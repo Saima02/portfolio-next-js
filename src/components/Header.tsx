@@ -9,46 +9,6 @@ import { routes, display, person, about, blog, work, gallery } from "@/resources
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Header.module.scss";
 
-import React, { useEffect, useState } from "react";
-
-type TimeDisplayProps = {
-  timeZone?: string;
-  locale?: string;
-};
-
-const TimeDisplay: React.FC<TimeDisplayProps> = ({
-  timeZone = "Asia/Kolkata", // India time zone
-  locale = "en-IN",
-}) => {
-  const [currentTime, setCurrentTime] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true, // 12-hour format with AM/PM
-      };
-      const timeString = new Intl.DateTimeFormat(locale, options).format(now);
-      setCurrentTime(timeString);
-    };
-
-    updateTime();
-    const intervalId = setInterval(updateTime, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [timeZone, locale]);
-
-  return <>{currentTime}</>;
-};
-
-export default TimeDisplay;
-
-export default TimeDisplay;
-
 export const Header = () => {
   const pathname = usePathname() ?? "";
 
